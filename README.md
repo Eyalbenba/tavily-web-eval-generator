@@ -42,8 +42,8 @@ Ensures that the generated question-answer pairs are saved in langsmith or local
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-repo/tavily-websearch-rag-generator.git
-cd tavily-websearch-rag-generator
+git clone https://github.com/Eyalbenba/tavily-web-eval-generator.git
+cd tavily-web-eval-generator
 ```
 
 ### 2. Create a Virtual Environment
