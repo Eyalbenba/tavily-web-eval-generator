@@ -1,7 +1,7 @@
 
-# Tavily Websearch RAG Benchmark Generator
+# Tavily RAG Websearch Eval Generator
 ---
-### The Tavily Websearch RAG Benchmark Generator creates a dataset of up-to-date question-answer pairs from recent factual events to benchmark RAG agents effectively.
+### The Tavily RAG Websearch Eval Generator creates a dataset of up-to-date question-answer pairs from recent factual events to evaluate RAG agents performance effectively.
 ---
 ![workflow](https://i.imgur.com/PpJFX0o.png)
 ---
