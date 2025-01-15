@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "web_search_benchmark_generator": "./src/web_eval_generator/graph.py:graph"
+  },
+  "env": ".env"
+}
