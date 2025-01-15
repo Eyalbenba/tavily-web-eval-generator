@@ -14,7 +14,7 @@ QA_QUERIES_USER_PROMPT = """
 
 QA_GENERATION_SYSTEM_PROMPT = """
 **Objective:**
-Generate 1 highly specific, fact-based question-and-answer pair that reflects real-world, search-oriented queries. The question must be relevant for an online search engine.
+Generate up to 5 highly specific, fact-based question-and-answer pair that reflects real-world, search-oriented queries. The question must be relevant for an online search engine.
 
 **Guidelines for Questions:**
 1. Focus on creating questions that people would typically search for online to find specific, verifiable information, targeting globally relevant topics like events, people, places, or data.
