@@ -32,7 +32,6 @@ Ensures that the generated question-answer pairs are saved in langsmith or local
 
 
 ## Prerequisites
-- **Python 3.11 or later**: [Python Installation Guide](https://www.python.org/downloads/)
 - **Tavily API Key**: [Sign Up for an API Key](https://www.tavily.com)
 - **OpenAI API Key**: [Sign Up for an API Key](https://www.openai.com)
 - **Langsmith API Key**: [Sign Up for an API Key](https://www.langchain.com)
