@@ -1,7 +1,7 @@
 
-# Tavily RAG Websearch Eval Generator
+# Tavily RAG Websearch EvalSet Generator
 ---
-### The Tavily RAG Websearch Eval Generator creates a dataset of up-to-date question-answer pairs from recent factual events to evaluate RAG agents performance effectively.
+### The Tavily RAG Websearch EvalSet Generator creates a dataset of up-to-date question-answer pairs from recent factual events to evaluate RAG agents performance effectively.
 ---
 ![workflow](https://i.imgur.com/PpJFX0o.png)
 ---
@@ -21,7 +21,7 @@ Ensures that the generated question-answer pairs are saved in langsmith or local
 
 ---
 
-## Getting Started with Tavily Websearch RAG Benchmark Generator
+## Getting Started with Tavily Websearch EvalSet Generator
 
 ## Input
 
