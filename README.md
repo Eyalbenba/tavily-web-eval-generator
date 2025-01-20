@@ -91,3 +91,5 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 ```
+### 6. Example Output:
+![langsmith_saved_example](https://imgur.com/VrgqGUX.png)
