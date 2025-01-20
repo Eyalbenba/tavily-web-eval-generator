@@ -1,7 +1,9 @@
 
 # Tavily Real-Time Dataset Generator for RAG Evals
 ---
-### The Generator creates a dataset of up-to-date question-answer pairs from recent factual events to evaluate RAG agents performance effectively.
+
+The **Real-Time Dataset Generator** is an advanced agent designed to **automate the creation of datasets** for evaluating **web-augmented AI agents**. By **generating domain-specific queries**, **collecting real-time web data**, and **filtering results**, it streamlines the evaluation process for **LLM-based agents**. 
+
 ---
 ![workflow](https://i.imgur.com/PpJFX0o.png)
 ---
