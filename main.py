@@ -1,12 +1,19 @@
 import dotenv
 dotenv.load_dotenv()
+import os
+print("HERE:", os.getenv("TAVILY_API_KEY"))
 import asyncio
-from src.web_search_benchmark_generator.graph import graph
-from src.web_search_benchmark_generator.state import GeneratorState
+from web_eval_generator.graph import graph
+from web_eval_generator.state import GeneratorState
 
 async def main():
     # Initialize ResearchState with user inputs
-    state = GeneratorState(num_qa=100,qa_subject="NBA Basketball")
+    qa_subjects = \
+        [
+        "Basketball",
+        "Baseball"
+        ]
+    state = GeneratorState(num_qa=100,qa_subjects=qa_subjects)
 
     # Run the graph workflow
     print("Starting the QA Generation workflow...")

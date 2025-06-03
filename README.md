@@ -11,15 +11,15 @@
 The **Real-Time Dataset Generator** is an advanced agent designed to **automate the creation of datasets** for evaluating **web-augmented AI agents**. By **generating domain-specific queries**, **collecting real-time web data**, and **filtering results**, it streamlines the evaluation process for **LLM-based agents**. 
 
 ---
-![workflow](https://i.imgur.com/PpJFX0o.png)
+![workflow](static/workflow.png)
 ---
 ## 🌟 Key Features
 
-### 1. `generate_qa_search_queries`
-This node generates targeted search queries based on the subject and input context. It prepares high-quality search queries to ensure that subsequent retrieval processes focus on the most relevant information.
+### 1. `generate_search_queries_on_subject`
+This node dynamically generates targeted web search queries for each subject in the provided list to ensure that subsequent retrieval processes focus on the most relevant information.
 
-### 2. `search`
-Leverages the Tavily Search API to retrieve web pages or documents related to the generated queries. This node forms the basis of the retrieval process, providing the necessary context for generating meaningful question-answer pairs.
+### 2. `web_search`
+Leverages the Tavily Search API, together with optional additional search providers, to retrieve web pages and documents for each subject. Using multiple providers helps reduce bias and improves coverage. This node serves as the foundation of the retrieval process, delivering the context needed to generate high-quality question-answer pairs.
 
 ### 3. `generate_qa`
 Processes each retrieved web page to generate question-answer pairs. Using a map-reduce paradigm, it extracts key insights from the content and synthesizes comprehensive QA items for each document.
@@ -35,7 +35,7 @@ Ensures that the generated question-answer pairs are saved in langsmith or local
 
 #### Parameters
 - **`num_qa`**: Specifies the number of question-answer items to generate. For example, setting this to `100` will produce 100 QA items.
-- **`qa_subject`**: Defines the subject focus for QA generation, such as "Sports," "Stocks," or "News." This ensures that the pipeline tailors its output to specific user needs.
+- **`qa_subjects`**: A list of subjects that the dataset should focus on (for example: ["Sports", "Stocks", "News"]). The pipeline will generate search queries and QA items for each subject in this list.
 - **`save_to_langsmith`**: Bool Parameter to indicate where to save the dataset
 
 
@@ -79,12 +79,12 @@ pip install -r requirements.txt
 import dotenv
 dotenv.load_dotenv()
 import asyncio
-from src.web_eval_generator.graph import graph
-from src.web_eval_generator.state import GeneratorState
+from web_eval_generator.graph import graph
+from web_eval_generator.state import GeneratorState
 
 async def main():
     # Initialize ResearchState with user inputs
-    state = GeneratorState(num_qa=100,qa_subject="NBA Basketball")
+    state = GeneratorState(num_qa=100,qa_subjects=["NBA Basketball"])
 
     # Run the graph workflow
     print("Starting the QA Generation workflow...")
