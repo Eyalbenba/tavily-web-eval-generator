@@ -11,7 +11,7 @@
 The **Real-Time Dataset Generator** is an advanced agent designed to **automate the creation of datasets** for evaluating **web-augmented AI agents**. By **generating domain-specific queries**, **collecting real-time web data**, and **filtering results**, it streamlines the evaluation process for **LLM-based agents**. 
 
 ---
-![workflow](static/workflow.png)
+![workflow](workflow.png)
 ---
 ## 🌟 Key Features
 
@@ -71,7 +71,7 @@ export LANGSMITH_API_KEY={Your Langsmith API Key here}
 #### 4. Install Dependencies
 Install the required dependencies for the project:  
 ```bash
-pip install -r requirements.txt
+pip install -e .
 ```
 
 #### 5. Example Run:
