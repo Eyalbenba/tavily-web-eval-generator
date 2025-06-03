@@ -2,8 +2,9 @@ from datetime import datetime
 from tavily import AsyncTavilyClient
 
 class Tavily:
-    def __init__(self):
+    def __init__(self, config):
         self.client = AsyncTavilyClient()
+        self.config = config
 
     async def search(self, query):
         """
@@ -16,7 +17,8 @@ class Tavily:
             tavily_response = await self.client.search(query=query, search_depth="basic", include_raw_content=True,
                                                        max_results=5, auto_parameters=True)
             search_response = tavily_response['results']
-            print("Tavily search took {} seconds".format(tavily_response['response_time']))
+            if self.config.DEBUG:
+                print("Tavily search took {} seconds".format(tavily_response['response_time']))
 
             # Combine the results from all the responses and update the sources_dict
             for result in search_response:

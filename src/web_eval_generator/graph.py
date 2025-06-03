@@ -5,8 +5,9 @@ from web_eval_generator.router import map_qa,save_router,start_router
 from web_eval_generator.config import Config
 from web_eval_generator.utils.all import Utils
 
-utils = Utils()
 cfg = Config()
+utils = Utils(cfg)
+
 # Initialize agents
 qa_search_queries = QASearchQueries(cfg,utils)
 search = MultiProviderSearchAgent(cfg,utils)

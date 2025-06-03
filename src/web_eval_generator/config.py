@@ -8,4 +8,4 @@ class Config:
         """
         self.LLM = ChatOpenAI(model="gpt-4o", temperature=0.2)
         self.save_to_langsmith = False
-        self.DEBUG = False
+        self.DEBUG = True

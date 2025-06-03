@@ -1,7 +1,6 @@
 import dotenv
 dotenv.load_dotenv()
 import os
-print("HERE:", os.getenv("TAVILY_API_KEY"))
 import asyncio
 from web_eval_generator.graph import graph
 from web_eval_generator.state import GeneratorState
@@ -13,7 +12,7 @@ async def main():
         "Basketball",
         "Baseball"
         ]
-    state = GeneratorState(num_qa=100,qa_subjects=qa_subjects)
+    state = GeneratorState(num_qa=5,qa_subjects=qa_subjects)
 
     # Run the graph workflow
     print("Starting the QA Generation workflow...")

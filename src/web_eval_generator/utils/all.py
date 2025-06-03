@@ -3,9 +3,9 @@ from .tavily_utils import Tavily
 
 
 class Utils:
-    def __init__(self):
+    def __init__(self, config):
         self.search_providers = {
-            "tavily": Tavily().search
+            "tavily": Tavily(config).search
              # self.search_provider_2 = SearchProviderTemplate().search
         }
        

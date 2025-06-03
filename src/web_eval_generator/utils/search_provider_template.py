@@ -1,5 +1,6 @@
 class SearchProviderTemplate:
-    def __init__(self):
+    def __init__(self, config):
+        self.config = config
         pass
 
     async def search(self, query):

@@ -27,7 +27,6 @@ class QASearchQueries:
         # Dividing by 3 because each provider yields multiple sources,
         # and Q and A pairs will be generated for each individual source.
         num_queries_per_subject = max(len(self.utils.search_providers), (state.num_qa // len(state.qa_subjects) // 3)+1)
-        print("num_queries_per_subject:", num_queries_per_subject)
 
         for subject in state.qa_subjects:
             msg = f"🗞️ Beginning QA Search Query generation based on subject '{subject}' process...\n"
