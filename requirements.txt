@@ -5,3 +5,4 @@ langgraph
 langsmith
 python-dotenv
 pydantic
+pandas

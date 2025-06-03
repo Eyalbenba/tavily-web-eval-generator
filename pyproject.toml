@@ -14,7 +14,8 @@ dependencies = [
     "langgraph",
     "tavily-python",
     "pydantic",
-    "langsmith"
+    "langsmith",
+    "pandas"
 ]
 
 

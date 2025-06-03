@@ -12,18 +12,26 @@ def save_router(state) -> Literal["save_dataset_to_langsmith", "save_dataset_to_
     except Exception as e:
         return "save_dataset_to_local"
 
-def start_router(state) -> Literal["generate_search_queries_on_subject", "tavily_search"]:
+def start_router(state) -> Literal["generate_search_queries_on_subject", "web_search"]:
     """Routes the workflow after the 'Start' step.
 
      If no subject is Inputted, it falls back to general questions for reevaluation."""
     try:
-        if state.qa_subject != 'general':
+        if state.qa_subjects != ['general']:
             return "generate_search_queries_on_subject"
         else:
-            return "tavily_search"
+            return "web_search"
     except Exception as e:
-        return "tavily_search"
+        return "web_search"
 
 def map_qa(state):
     # Map Function
-    return [Send("generate_qa", {"page_content": result.get('content', '')}) for url,result in state.search_results.items()]
+    return [
+        Send("generate_qa", {
+            "page_content": result["content"],
+            "provider": result["provider"],
+            "citations": result["citations"],
+            "subject": result["subject"],
+        })
+        for result in state.search_results
+    ]

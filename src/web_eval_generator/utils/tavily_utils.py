@@ -1,41 +1,38 @@
-import asyncio
 from datetime import datetime
 from tavily import AsyncTavilyClient
 
 class Tavily:
-    def __init__(self):
+    def __init__(self, config):
         self.client = AsyncTavilyClient()
+        self.config = config
 
-    async def search(self, sub_queries: list[str], sources_dict: dict):
+    async def search(self, query):
         """
         Perform searches for each sub-query using the Tavily Search concurrently.
 
-        :param sub_queries: List of search queries.
-        :param sources_dict: Dictionary to store unique search results, keyed by URL.
+        :param query: search query.
         """
+        try:
+            sources_dict = {} # Return a dictionary
+            tavily_response = await self.client.search(query=query, search_depth="basic", include_raw_content=True,
+                                                       max_results=5, auto_parameters=True)
+            search_response = tavily_response['results']
+            if self.config.DEBUG:
+                print("Tavily search took {} seconds".format(tavily_response['response_time']))
 
-        # Define a coroutine function to perform a single search with error handling
-        async def perform_search(query):
-            try:
-                # Add date to the query as we need the most recent results
-                query_with_date = f"{query} {datetime.now().strftime('%m-%Y')}"
-                tavily_response = await self.client.search(query=query_with_date, topic="news",days=3, max_results=8)
-                return tavily_response['results']
-            except Exception as e:
-                # Handle any exceptions, log them, and return an empty list
-                print(f"Error occurred during search for query '{query}': {str(e)}")
-                return []
-
-        # Run all the search tasks in parallel
-        search_tasks = [perform_search(itm) for itm in sub_queries]
-        search_responses = await asyncio.gather(*search_tasks)
-
-        # Combine the results from all the responses and update the sources_dict
-        for response in search_responses:
-            for result in response:
+            # Combine the results from all the responses and update the sources_dict
+            for result in search_response:
                 url = result.get("url")
-                if url and url not in sources_dict:
+                if url:
                     # Add the result to sources_dict if the URL is not already present
-                    sources_dict[url] = result
+                    sources_dict[url] = {
+                        "content": f"title:{result.get('title')}, 'content':{result.get('raw_content',result.get('content', ''))}",
+                        "provider": "tavily",
+                        "citations": [url]
+                    }
 
-        return sources_dict
+            return sources_dict
+        except Exception as e:
+            return {
+                "error": f"Error occurred during tavily search for query '{query}': {e}"
+            }

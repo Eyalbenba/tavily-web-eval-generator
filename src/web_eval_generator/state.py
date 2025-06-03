@@ -8,22 +8,21 @@ import operator
 
 
 ##### Main Input , Output and Generator States ####
-
 class InputState(BaseModel):
     num_qa: Optional[int] = Field(
         default=100,
         description="Number of Question Answer Items to Generate",
-        example="100",
+        examples=[100]
     )
-    qa_subject: Optional[str] = Field(
-        default="general",
-        description="QA Subject Name",
-        example="Sports, Stocks, News....",)
+    qa_subjects: Optional[List[str]] = Field(
+        default=["general"],
+        description="QA Subjects",
+        examples=[["Sports", "Stocks", "News"]])
 
     save_to_langsmith: Optional[bool] = Field(
-        default=True,
+        default=False,
         description="Flag to indicate whether to save the generated data to LangSmith.",
-        example=True,
+        examples=[True]
     )
 
 class OutputState(BaseModel):
@@ -36,27 +35,26 @@ class OutputState(BaseModel):
 
 class QAState(BaseModel):
     page_content: str
+    citations: list[str]
+    subject: str
 
 class GeneratorState(InputState, OutputState):
-    search_queries: List[str] = Field(
-        default_factory=lambda: [
-            "Technology news of today",
-            "Sports news of today",
-            "Stock market updates of today",
-            "World politics news of today",
-            "Entertainment news of today",
-            "Weather forecast of today",
-            "Health and wellness news of today",
-            "Science discoveries of today",
-            "Business trends of today",
-            "Education news of today"
-        ],
-        description="A default list of search queries covering a variety of topics."
+    search_queries: Dict[str, List[str]] = Field(
+        default_factory=lambda: {
+            "Technology": ["Technology news of today"],
+            "Sports": ["Sports news of today"],
+            "Stock Market": ["Stock market updates of today"],
+            "World Politics": ["World politics news of today"],
+            "Entertainment": ["Entertainment news of today"],
+            "Weather": ["Weather forecast of today"],
+            "Health": ["Health and wellness news of today"],
+            "Science": ["Science discoveries of today"],
+            "Business": ["Business trends of today"],
+            "Education": ["Education news of today"]
+        },
+        description="A default dictionary of topic to list of search queries covering a variety of subjects."
     )
-    search_results: Dict[str, Dict[str, Any]] = Field(default_factory=dict)
-    q_and_as: Annotated[list, operator.add] = Field(default_factory=list)
-
-
-
-
-
+    # search_results: Dict[str, Dict[str, Any]] = Field(default_factory=dict)
+    search_results: Any = Field(default_factory=list)
+    q_and_a: Annotated[list, operator.add] = Field(default_factory=list)
+    dataset: list = Field(default_factory=list)
