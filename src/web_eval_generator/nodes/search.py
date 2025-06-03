@@ -6,12 +6,6 @@ class MultiProviderSearchAgent:
         self.cfg = cfg
         self.utils = utils
         self.providers = self.utils.search_providers
-        # self.providers = {
-        #     "tavily": self.utils.tavily.search,
-        #     # Add additonal serarch providers here
-        #     # "search_provider_2": self.utils.search_provider_2.search,
-        #     # "search_provider_3": self.utils.search_provider_3.search,
-        # }
 
     async def run(self, state):
         msg = "🔎 Running Multi-Provider Search...\n"
